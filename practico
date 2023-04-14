@@ -1,0 +1,165 @@
+
+1)
+hay 2 muestras
+
+2)
+estudiar una cepa de e.coli y su expresion en 2 diferentes condiciones
+
+3)
+analisis de expresion de cepa de e.coli
+
+
+1.1)
+analisis de 2 muestras de cepas de e.coli en diferentes condiciones
+
+2.2)
+medio con solo LB y medio con LB y sales biliares
+
+3.3)
+estudia las cepas de e.coli en 2 diferentes condiciones para ver si tiene diferentes expresiones
+
+
+1.1.1)
+hay uno solo que es .sra, que necesita ser analizado por algun software para que pueda ser utilizado
+
+
+
+
+
+
+
+
+
+
+El estudio se trata de la expresion de bacterias de e.coli en 2 condiciones, con LB solo y con LB y sales biliares
+para estudiar la expresion de sus proteinas
+
+2)
+
+5)
+
+6)
+
+7)
+
+
+
+1)	parte
+El estudio se trata de la expresión de bacterias de e.coli en 2 condiciones, con LB solo y con LB y sales biliares
+para estudiar la expresión de sus proteínas
+
+1) Hay 2 muestras en el experimento
+
+2) El objetivo del estudio es analizar la expresión de proteínas de una e.coli en 2 condiciones diferentes
+
+3) 
+
+
+
+1)	El articulo trata de estudiar las vías regulatorias de una cepa patogénica de e.coli, la cual causa graves problemas de salud en los países afectados. Al tener poca información sobre la señalización y expresión de virulencia, colocan a la cepa de e.coli con LB y LB con sales biliares
+
+2)	Se comparan 2 ambientes en los que se coloca a la cepa, con LB y LB con sales biliares para saber si la expresión de la cepa cambia
+
+3)	
+
+
+
+2)	parte
+
+1)	hay 4 archivos que pertenecen al SRR345261 y SRR345260, como ambos son paired end y usamos un fastq—dump –Split-3, el cual separa los paired end en 2 runs diferentes.
+
+2)	Por ser una tecnología de illumina
+
+3)	A
+
+
+4)	A
+
+
+
+1)
+SRR345260 tiene un largo de 32121845
+
+SRR345261 tiene un largo de 30689399
+
+2)
+Si, porque al final
+
+
+
+
+
+3. Traduce a n´umeros (Phred score) el string codificado en ASCII de
+calidad del primer read del archivo SRR345261 1.fastq. ¿Se puede
+decir que presenta buena calidad?
+
+la primera secuencia del read despues del +, usar el codigo ascii
+
+https://support.illumina.com/help/BaseSpace_OLH_009008/Content/Source/Informatics/BS/QualityScoreEncoding_swBS.htm
+
+4. Haz lo mismo para el primer read del archivo SRR345260 1.fastq.
+¿Qu´e se puede afirmar de esta calidad?
+
+
+
+
+2. En general se observa un descenso de las calidades hacia el final de los
+reads ¿es esto esperable?
+
+por errores de la polimererasa
+
+tmb puede darse por el basecalling
+
+3. ¿Cu´al es la media de calidad aproximadamente para cada muestra?
+¿Es una buena calidad?
+
+La media aproximadamente para cada muestra es de 36, es una muy buena calidad de muestra porque el maximo es 40, lo que significa que los pares de bases que el secunciador lee muy probablemente esten correctos
+
+4. ¿Qu´e par´ametros de calidad no se cumplen en este experimento? ¿A
+qu´e corresponden cada uno de ellos?
+
+El secuence duplication levels
+
+
+5. ¿Por qu´e es importante evaluar el contenido GC de los reads?
+
+Es importante porque, si se ve un valor movido hacia los costados del gen de referencia puede significar que la muestra esta contaminada
+
+6. ¿Por qu´e es importante evaluar la cantidad de duplicados de los reads?
+
+La mayoria de reads deberian dejar de duplicarse al principio, entonces cualquier "pico" que aparezca en el medio va a mostrar una contaminacion de la muestra
+
+7. ¿Por qu´e se eval´uan k-meros sobre representados?
+
+Es importante para saber si todos los reads estan representados equitativamente y no alguno esta sobreexpresado arriba de otros
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

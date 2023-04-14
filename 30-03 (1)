@@ -1,0 +1,55 @@
+
+Para el mapeo de genomas, si queres avergiuar si ya se reconocio la secuencia que tenes, es necesario compararla con un genoma de referencia
+
+Se 
+
+
+Cuando no hay genoma de referencia, se hace un ensamblado de novo
+
+
+
+
+En el mapeo todos los reads que coincidan con el genoma de referencia, se van a alinear y te van a decir su region, para saber
+informacion estructural
+
+
+
+en el mapeo de los "SAM" te permite leerlo con head o nano, pero el "PAM" no. Los flags (segunda columna) de cada secuencia te permite saber la informacion completa de la secuencia(se busca alguna web explain SAM flags)
+
+el index se crea para hacer el mapeo y se necesita una secuencia de referencia
+
+El samtools view sirve para ver archivos BAM, los cuales estan comprimidos y no se pueden ver ni con head o cat
+
+El formato BAM sirve para comprimir mapeo muy grandes para que no pesen mucho
+
+samtools view (archivo.BAM) > (archivo.SAM)
+
+sirve para descomprimir el archivo .BAM en uno .SAM
+
+samtools sort (archivo) -o (archivo)
+
+sirve para hacer un sort de todas las secuencias y tiene de output un .BAM
+el -o es la opcion del output, te lo guarda siempre en BAM
+
+
+el mapeo sin sort va a mostrarte los reads en orden que se leen, pero con el sort te lo da en orden de posicion en la secuencia
+
+
+
+usar el "tablet" del desktop para empezar el assembly y colocar el mapeo con sort.SAM y en la referencia el .fna. luego de haber hecho el assembly poner "import features"(archivo .gtf) para saber cuantos hits hubo con la secuencia de referencia
+
+archivo.gtf tiene informacion estructural sobre la secuencia que corrimos
+
+
+
+
+
+
+
+
+
+
+
+
+
+

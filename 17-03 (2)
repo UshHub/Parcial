@@ -1,0 +1,107 @@
+
+sed 's/a//g'
+
+el doble // sustituye a por nada
+el g al final aplica el sed a todas las lineas
+
+sed -i 's/a//g'
+
+el -i te sobrescribe el archivo inicial con los cambios de sed (mejor usar > y redirigirlo a otro archivo)
+
+grep -f
+
+sirve para comparar un file con otro para saber si tiene coincidencias y luego con un > poder guardarlo en un file
+
+---modificacion de archivo para que queden iguales
+
+sed 's/C./Campylobacter./g' patogenos.txt | sed 's/ //g' > patogenos2.txt
+
+sed 's/>//g' headers.txt > headers2.txt
+
+---comparacion de los archivos finales
+
+grep -f  headers2.txt patogenos2.txt > final
+
+
+--- imprime la primera secuencia 
+
+grep -m 1 -v ">" atp.fasta
+
+
+
+
+
+
+
+Para crear un directorio oculto, se coloca un punto adelante del todo
+
+echo "hola" > texto
+crea un txt que tiene hola
+
+
+echo "hola" >> texto
+modifica el texto colocando un hola en la siguiente linea
+
+history
+me da un historial de todos los comandos usados
+
+grep
+grep ">" archivo
+
+busca algo en especifo en un archivo
+
+wordcount
+wc archivo
+cuanta las letras, palabras del archivo
+
+usando -l ,cuenta solo las lineas
+
+codigo --help
+da un help de como funciona
+
+man
+manual del codigo, no esta instalada
+
+sh exe.bash
+
+te permite correr un .bash o script
+
+prefetch
+
+sabiendo el ascencion number de la corrida, linux puede descargalo solo
+
+fastq-dump
+
+te genera un fastq, atravez de usar un .sra
+
+fastq-dump --split-3
+
+te separa las 2 corridas en 2 archivos diferentes
+
+
+
+fastqc 
+
+genera un analisis total de la corrida y te lo pone en un .zip
+
+se puede entrar al desktop de jupyter y ahi usar la app instalada de fastQC
+
+
+para mover un .txt hacia atras poner .. y se mueve al archivo anterior
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

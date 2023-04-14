@@ -1,0 +1,219 @@
+Repaso parcial bioinfo 2
+
+Sanger
+
+Extensión con ADN polimerasa y nucleótidos radiomarcados a partir de un primer
+
+Reacción +
+extensión utilizando sólo un tipo de nucleótido. Si la base complementaria está en la hebra molde se añadirá este nucleótido.
+
+Reacción -
+extensión utilizando todos los nucleótidos
+
+Separación de los fragmentos
+evolución de precios de secuenciación por megabases
+
+La capacidad de procesamiento y costo vs tiempo, cada 2 años aprox… se baja el precio de secuenciación y sigue un comportamiento de la ley de Moore
+
+
+1 generación
+
+-	Primero se hacen 4 mezclas de reacción, una con un ddNTPs diferente radio-marcado
+
+-	Se hace una PCR y se detiene después de x tiempo
+
+-	El paso final para poder terminar la secuenciación de sanger es haciendo una electroforesis
+
+
+Mejoras al sistema
+
+-	Los ddNTPsradio-marcados se sustituyen por ddNTPs marcados con diferentes fluoruros, por la radiación de los isotopos radioactivos
+
+-	Se hice una electroforesis capilar y permite la automatización de la secuenciación de sanger
+
+En el automatizado va a leer la ultima base que se encuentre en cada secuencia sintetizada y luego el cromatograma va a leer lo que diga
+
+2 generación (NGS)
+
+-	los reads son digitales
+-	Los reads se producen de librerías, no de vectores (evitando el sesgo en la clonación)
+-	Se requieren pocas corridas para completar un experimento, porque se hacen muchas a la vez
+-	Procesa millones de reads en paralelo
+-	Producen reads mas cortos (25 – 300 bp) en comparación con sanger (650 – 800 bp)
+-	Se monitorea la incorporación de los nucleótidos directamente, no como sanger que se hacen un paso y luego otro, en NGS la síntesis y detección se hacen al mismo tiempo
+
+Illumina
+A diferencia de sanger, se toman muchas lecturas de la misma secuencia
+
+-	Detección de fluorescencia
+-	Secuenciación por síntesis, se va detectando mientras se sintetiza, cada base tiene un fluoruro diferente
+-	Reads de  100 – 300 pb
+-	Nucleótidos se agregan simultáneamente mientras se detecta
+
+Se tiene el fragmento de ADN, se fragmenta el mismo en pedazos mas pequeños, se da la ligación de los adaptadores a las secuencias para que se puedan amplificar junto a los primers que se encuentran en las Flow cells, luego se “curva” la secuencia y amplifica toda la secuencia en “puente”.
+Los fragmentos en puente se vuelven de doble hebra y se cliva en simple hebra, creando clusters de fragmentos de simple hebra.
+Para finalmente se de la unión del primer de secuenciación para empezar a secuenciar los fragmentos
+
+ddNTPs con fluoróforos se unen al fragmento con una polimerasa, los ddNTPs que no se incorporan son “lavados” y luego un laser excita al fluoróforos y la cámara captura el color de emisión, el fluoróforo es clivado y un nuevo ciclo empieza
+
+
+3 generación
+
+Esta generación de secuenciadores permite una mayor velocidad de secuenciación que las 2 anteriores
+
+Ion Torrent
+
+-	Cuando un nucleótido es incorporado en una cadena de ADN por una polimerasa un ion H es liberado. Utiliza la detección del cambio de PH
+
+PacBio
+
+-	Chips con Wells que cada uno tiene una polimerasa anclada, la cual una vez tenga un fragmento va a hacer una secuenciación por síntesis con nucleótidos marcados con fluoróforos.
+La diferencia con Illumina es que, la polimerasa es en la solución con los nucleótidos mientras que en PacBio hay una placa con muchos Wells y la polimerasa está anclada en las mismas, entonces la secuencia viene hacia la polimerasa.
+-	Tiene una alta tasa de error 10-18 % de error
+
+
+Dependiendo que es lo que tengo o quiero hacer:
+
+No tengo un genoma de referencia = se hace un ensamblado de novo de genomas
+Quiero saber que regiones del genoma se expresan en una condición en particular = ARN secuencial
+Tengo un genoma de referencia y quiero saber cuales son las diferencias de mi genoma con el de referencia = re-secuenciado de genomas y búsqueda de variantes
+Quiero saber que genes o microorganismo están presentes en una muestra ambiental = metagenómica
+Quiero conocer las modificaciones no heredables = perfiles epigenéticos
+Quiero saber a que región/s del genoma se une una proteína
+
+
+
+Los datos crudos de secuenciación (señales del secuenciador, ej illumina fotos de los Flow cells) pueden pesar hasta terabytes, luego de ser analizados por su basecalling (FASTQ) su tamaño va a verse reducido.
+
+Reads: secuencia de ADN que fue “leída” por el secuenciador
+-	Single end
+Lee un solo extremo de la secuencia, puede ser útil para secuenciaciones cortas
+No sirve para poder identificar regiones repetidas
+
+
+-	Pair end
+Permite leer ambos extremos de la secuencia, para facilitar la detección de secuencias repetidas
+Produce la doble cantidad de reads al crear la librería y la habilidad de detectar rearreglos estructurales como inserciones y indels, que no es posible con la single end
+
+-	Dependiendo del largo del fragmento, los reads se pueden superponer. Cada base de la superposición es leída 2 veces
+Los reads informativos son los que se repiten en una región repetitiva y se tiene información de donde se ubican estos reads, para comparar con el pair end
+
+Un read repetido es no informativo cuando caen dentro de la región repetida
+
+Base calling
+Determinación de la secuencia de ADN a partir de señales captadas por el secuenciador (ej: valores de intensidad de fluorescencia para nucleótidos marcados con fluoróforos)
+
+Calidad de base
+Confianza en la identidad de las bases en un read, es leído como un Q-score 10 = 90% de exactitud hasta 50 = 99.999% de exactitud
+
+Alineamiento o mapeo
+“matcheo” de un read contra una secuencia de referencia (ej: un genoma)
+Te permite ver los mejores matches de tu secuencia con el de referencia
+
+Assembly
+“matcheo” de reads solapantes para formar una secuencia más larga, sin mapear contra una referencia.
+Los contigs se agrupan para formar scaffolds
+
+
+-	Tipos de archivos:
+
+-	FastQ: tiene 2 lineas que tiene el header con la secuencia y el mismo header y la calidad de cada base según el código ascci
+
+-	SRA: 
+
+-	SAM: es el formato estándar de alineamientos de reads cortos (almacena datos de secuenciación en formato de texto), usa SAMTOOLS en Linux, para saber que significan los flags (2 columna) hay que buscarlos en una pagina
+
+
+
+
+-	FastQC:
+
+-	Calidad por posición:
+Al principió van a haber buenas calidades mientras que al final van a empezar a caer (por la polimerasa)
+
+Mientras que la calidad sea mayor a 30, no debería haber mucho problema
+
+-	Score de calidad por secuencia
+La media de calidad para cada read, la media debería estar pegado al eje (que representa mientras más pegado al eje más calidad hay) para que la muestra se encuentre en buena calidad. Se espera que la curva sea alta al final del gráfico, por el error de la polimerasa.
+Cuando hay un pico en el medio hay error en la muestra y no sirve..
+
+-	Contenido nucleotídico por posición
+Muestra la proporción de cada base en cada posición, en una library generada se espera no encontrar diferencias entre las bases. Un sesgo grande hacia algunas bases indica que la library esta contaminada por una secuencia sobreexpresada.
+
+-	Distribución de GC por secuencia
+Examina el contenido GC de toda la secuencia y lo compara con una distribución normal de contenido GC, se esperaría una distribución normal en el centro, parecida a la distribución normal teórica.
+Otra distribución podría indicar una librería contaminada
+
+-	Contenido de N por posición
+Si el secuenciador no puede determinar con una confianza suficiente que base corresponde a determinada posición, devolverá una N en un lugar de una base. Se suele ver una línea pegada al eje, porque no hubo errores al determinar una base.
+Un error suele ser ver picos y no una línea recta.
+
+-	Largo de las secuencias
+Analiza la distribución de los largos de los reads
+
+-	Secuencias duplicadas
+Mide el nivel de duplicación para cada secuencia y muestra el numero relativo de grados de duplicación.
+Un nivel de duplicación bajo indica un alto nivel de cobertura, un nivel bajo indica un sesgo por enriquecimiento (PCR).
+
+
+-	K-mers sobrerrepresentados
+Kmero es una secuencia de k bases (kmero de 5 tiene 5 bases)
+Calcula el nivel esperado en el que se debería ver ese k-mer en el contenido de cada base en la library.
+Muestra si hay un enriquecimiento general o si existe un patrón en el sesgo en distintos puntos a lo largo del read.
+Cada k-mer se reporta si muestra un enriquecimiento de 3 veces en general
+
+
+
+
+
+
+
+En terminal
+
+.sra se consigue del ncbi con el asencion code, luego para descomprimir en fowards y reverse usar fastq-dump --split-3.
+
+El fastq me da los reads y su calidad en 2 diferentes fragmentos (fw y rv)
+
+En desktop
+
+Luego con FastQC analizar ambas secuencias y ver si su calidad es buena
+
+
+
+
+En R
+
+index, genera un indice de referencia.
+
+y con el subread se hace el mapeo en SAM o BAM
+
+
+
+
+En terminal 
+
+Se puede hacer sort de los mapeos con samtools, para luego poder ponerlos en el tablet del desktop
+
+samtools sort (archivo) -o (archivo)
+
+
+Para analizar el .SAM usar samtools flagstat (archivo)
+
+
+
+
+En desktop
+
+Se alinea el mapeo con uno de referencia con tablet
+
+
+
+
+
+
+
+
+
+
+
+
